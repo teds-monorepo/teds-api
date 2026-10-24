@@ -29,7 +29,7 @@ table { border-collapse: collapse; } td, th { border: 1px solid #ccc; padding: 4
 <h1>teds-api</h1>
 <p class="sub">Base URL: <code>${BASE_URL}</code> — mọi route JSON, trừ <code>DELETE</code> trả <code>204</code> rỗng.</p>
 <nav>
-<a href="#auth">Auth</a><a href="#health">Health</a><a href="#games">Free games</a><a href="#kv">KV</a><a href="#errors">Errors</a>
+<a href="#auth">Auth</a><a href="#health">Health</a><a href="#games">Free games</a><a href="#timeline">Timeline</a><a href="#kv">KV</a><a href="#errors">Errors</a>
 </nav>
 
 <section id="auth">
@@ -49,6 +49,15 @@ table { border-collapse: collapse; } td, th { border: 1px solid #ccc; padding: 4
 <h2><span class="method get">GET</span> <code>/api/fetch-free-games</code></h2>
 <p>Game đang miễn phí 100% trên Epic và Steam. Lỗi upstream → <code>502 { error: { code: "upstream_failed" } }</code>.</p>
 <pre>curl -H "X-API-Key: &lt;API_KEY&gt;" ${BASE_URL}/api/fetch-free-games</pre>
+</section>
+
+<section id="timeline">
+<h2><span class="method get">GET</span> <code>/api/timeline</code></h2>
+<p>Sự kiện timeline từ bảng <code>timeline_events</code>, sắp xếp tăng dần theo <code>solar_date</code>.</p>
+<table><tr><th>Query</th><th>Mô tả</th></tr>
+<tr><td><code>category</code></td><td>Tùy chọn: <code>public-holiday</code> hoặc <code>family</code>. Giá trị khác → <code>400 { error: { code: "invalid_query" } }</code>.</td></tr></table>
+<pre>curl -H "X-API-Key: &lt;API_KEY&gt;" "${BASE_URL}/api/timeline?category=family"
+# {"events":[{"id":"...","name":"Tết","solar_date":"2026-02-17","lunar_date":"1/1","type":"lunar","icon":"...","note":"...","category":"public-holiday"}]}</pre>
 </section>
 
 <section id="kv">

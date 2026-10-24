@@ -33,11 +33,17 @@ src/
     kv/
       routes.ts          # CRUD /api/kv/*
       schemas.ts         # Zod schemas + giới hạn limit/TTL
+    timeline/routes.ts   # GET /api/timeline (query: category)
+    docs/routes.ts       # GET / — trang docs HTML mặc định
   lib/
     auth.ts              # so khớp API key (constant-time)
     kv.ts                # SupabaseKvStore: CRUD qua bảng kv_entries
+    timeline.ts          # SupabaseTimelineStore: list timeline_events
 test/                    # vitest: env, auth, kv round-trip
 ```
+
+Thêm route mới thì cập nhật cả trang docs mặc định (`GET /`,
+`src/modules/docs/routes.ts`) lẫn bảng API bên dưới.
 
 ## API
 
