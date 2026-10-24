@@ -20,6 +20,7 @@ API dùng service-role nên RLS deny mặc định với anon — không expose 
 src/
   server.ts              # boot + graceful shutdown
   app.ts                 # build Fastify instance, CORS, routes
+                         # + default export cho Vercel (entrypoint serverless)
   config/env.ts          # validate env bằng Zod, fail fast
   plugins/
     error-handler.ts     # envelope lỗi + 404, giấu stack ở production
@@ -83,3 +84,9 @@ curl -H "X-API-Key: dev-secret-key" http://localhost:3001/api/kv/jobs/42
 VPS + systemd + Caddy: build bằng `pnpm build`, chạy `node dist/server.js`.
 Env bắt buộc trong production: `API_KEY`, `SUPABASE_URL`,
 `SUPABASE_SERVICE_ROLE_KEY`, `CORS_ORIGINS`.
+
+Vercel: repo tự nhận framework Fastify và lấy `src/app.ts` làm entrypoint, nên
+file này phải có `export default` (handler `(req, res)` dựng Fastify instance một
+lần rồi emit request). Thiếu default export → Vercel báo
+`The default export must be a function or server.` `src/server.ts` chỉ dùng cho
+VPS (`node dist/server.js`).

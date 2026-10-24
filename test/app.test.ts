@@ -210,3 +210,11 @@ describe('kv endpoints', () => {
     await app.close();
   });
 });
+
+describe('vercel entrypoint', () => {
+  // Vercel picks src/app.ts as the entrypoint and requires a default export.
+  it('src/app.ts has a default export function', async () => {
+    const mod = await import('../src/app.js');
+    expect(typeof mod.default).toBe('function');
+  });
+});

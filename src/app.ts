@@ -1,3 +1,4 @@
+import type { IncomingMessage, ServerResponse } from 'node:http';
 import Fastify, { LogController, type FastifyInstance } from 'fastify';
 import cors from '@fastify/cors';
 import { errorHandler } from './plugins/error-handler.js';
@@ -10,7 +11,7 @@ import { timelineRoutes } from './modules/timeline/routes.js';
 import { createClient } from '@supabase/supabase-js';
 import { SupabaseKvStore, type KvStore } from './lib/kv.js';
 import { SupabaseTimelineStore, type TimelineStore } from './lib/timeline.js';
-import type { Env } from './config/env.js';
+import { loadEnv, type Env } from './config/env.js';
 
 export interface BuiltApp {
   app: FastifyInstance;
@@ -46,4 +47,15 @@ export async function buildApp(env: Env, kv?: KvStore, timeline?: TimelineStore)
   await app.register((instance) => timelineRoutes(instance, timelines), { prefix: '/api' });
 
   return { app, kv: store, timeline: timelines };
+}
+
+let instance: Promise<FastifyInstance> | undefined;
+
+// Vercel's Fastify runtime imports this module as the entrypoint and requires a
+// default export. One instance per lambda container, reused across requests.
+export default async function handler(req: IncomingMessage, res: ServerResponse): Promise<void> {
+  instance ??= buildApp(loadEnv()).then(({ app }) => app);
+  const app = await instance;
+  await app.ready();
+  app.server.emit('request', req, res);
 }
