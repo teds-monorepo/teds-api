@@ -68,15 +68,15 @@ pnpm dev
 `.env.example`, điền `SUPABASE_URL` và `SUPABASE_SERVICE_ROLE_KEY` (lấy từ
 `supabase status`).
 
-Mở `http://localhost:3001/api/health`. Đặt `API_KEY` trong `.env` để gọi các
+Mở `http://localhost:4501/api/health`. Đặt `API_KEY` trong `.env` để gọi các
 route còn lại:
 
 ```bash
-curl -H "X-API-Key: dev-secret-key" http://localhost:3001/api/health
-curl -H "X-API-Key: dev-secret-key" "http://localhost:3001/api/timeline?category=family"
+curl -H "X-API-Key: dev-secret-key" http://localhost:4501/api/health
+curl -H "X-API-Key: dev-secret-key" "http://localhost:4501/api/timeline?category=family"
 curl -X PUT -H "X-API-Key: dev-secret-key" -H "Content-Type: application/json" \
-  -d '{"value":{"status":"done"}}' http://localhost:3001/api/kv/jobs/42
-curl -H "X-API-Key: dev-secret-key" http://localhost:3001/api/kv/jobs/42
+  -d '{"value":{"status":"done"}}' http://localhost:4501/api/kv/jobs/42
+curl -H "X-API-Key: dev-secret-key" http://localhost:4501/api/kv/jobs/42
 ```
 
 ## Deploy

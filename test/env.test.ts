@@ -8,7 +8,7 @@ describe('loadEnv', () => {
       SUPABASE_URL: 'http://127.0.0.1:54321',
       SUPABASE_SERVICE_ROLE_KEY: 'test-key',
     } as NodeJS.ProcessEnv);
-    expect(env.PORT).toBe(3001);
+    expect(env.PORT).toBe(4501);
     expect(env.NODE_ENV).toBe('development');
   });
 

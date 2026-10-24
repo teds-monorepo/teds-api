@@ -1,6 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'http://localhost:4501';
 
 const page = `<!doctype html>
 <html lang="vi">

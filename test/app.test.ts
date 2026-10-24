@@ -7,9 +7,9 @@ import type { TimelineEvent, TimelineStore } from '../src/lib/timeline.js';
 function testEnv(extra: Record<string, string> = {}) {
   return loadEnv({
     NODE_ENV: 'test',
-    PORT: '3001',
+    PORT: '4501',
     HOST: '127.0.0.1',
-    CORS_ORIGINS: 'http://localhost:5173',
+    CORS_ORIGINS: 'http://localhost:4500',
     LOG_LEVEL: 'error',
     API_KEY: 'test-key',
     SUPABASE_URL: 'http://127.0.0.1:54321',
