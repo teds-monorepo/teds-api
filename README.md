@@ -55,12 +55,17 @@ Mọi endpoint đều cần header `X-API-Key`, trừ `/api/health`.
 ## Chạy local
 
 ```bash
-supabase start            # Postgres + API local (:54322 / :54321)
-supabase db reset         # chạy migrations + seed (migrations nằm trong repo monorepo gốc)
+supabase start
+supabase db reset
 pnpm install
-cp .env.example .env      # điền SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (lấy từ `supabase status`)
+cp .env.example .env
 pnpm dev
 ```
+
+`supabase start` chạy Postgres + API local (:54322 / :54321). `supabase db reset`
+áp migrations + seed (migrations nằm trong repo monorepo gốc). Sau khi copy
+`.env.example`, điền `SUPABASE_URL` và `SUPABASE_SERVICE_ROLE_KEY` (lấy từ
+`supabase status`).
 
 Mở `http://localhost:3001/api/health`. Đặt `API_KEY` trong `.env` để gọi các
 route còn lại:
