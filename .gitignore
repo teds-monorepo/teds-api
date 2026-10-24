@@ -1,0 +1,23 @@
+node_modules/
+dist/
+build/
+
+# Env & secrets — never commit real credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# pnpm / npm
+pnpm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
