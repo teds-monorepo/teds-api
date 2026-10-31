@@ -53,7 +53,7 @@ Mọi endpoint đều cần header `X-API-Key`, trừ `/api/health`.
 | -------- | ----------------------- | -------------------------------------------------------------------------- |
 | `GET`    | `/api/health`           | Kiểm tra service + KV. Public.                                             |
 | `GET`    | `/api/fetch-free-games` | Game đang miễn phí 100% trên Epic và Steam.                                |
-| `GET`    | `/api/timeline`           | Danh sách sự kiện timeline từ bảng `timeline_events`, sắp xếp theo `solar_date`. Query: `category` (`public-holiday` \| `family`). |
+| `GET`    | `/api/timeline`           | Danh sách sự kiện timeline từ bảng `timeline_events`, sắp xếp theo `solar_date`. Query: `category` (`public-holiday` \| `family` \| `due-dates`). |
 | `GET`    | `/api/kv`               | Liệt kê key. Query: `prefix`, `limit` (tối đa 1000), `cursor`.             |
 | `GET`    | `/api/kv/:key`          | Đọc giá trị. `:key` có thể chứa dấu `/`.                                   |
 | `PUT`    | `/api/kv/:key`          | Ghi giá trị. Body: `{"value": <bất kỳ>, "expirationTtl"?: <giây, >= 60>}`. |

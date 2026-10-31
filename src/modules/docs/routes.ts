@@ -55,7 +55,7 @@ table { border-collapse: collapse; } td, th { border: 1px solid #ccc; padding: 4
 <h2><span class="method get">GET</span> <code>/api/timeline</code></h2>
 <p>Sự kiện timeline từ bảng <code>timeline_events</code>, sắp xếp tăng dần theo <code>solar_date</code>.</p>
 <table><tr><th>Query</th><th>Mô tả</th></tr>
-<tr><td><code>category</code></td><td>Tùy chọn: <code>public-holiday</code> hoặc <code>family</code>. Giá trị khác → <code>400 { error: { code: "invalid_query" } }</code>.</td></tr></table>
+<tr><td><code>category</code></td><td>Tùy chọn: <code>public-holiday</code>, <code>family</code> hoặc <code>due-dates</code>. Giá trị khác → <code>400 { error: { code: "invalid_query" } }</code>.</td></tr></table>
 <pre>curl -H "X-API-Key: &lt;API_KEY&gt;" "${BASE_URL}/api/timeline?category=family"
 # {"events":[{"id":"...","name":"Tết","solar_date":"2026-02-17","lunar_date":"1/1","type":"lunar","icon":"...","note":"...","category":"public-holiday"}]}</pre>
 </section>
